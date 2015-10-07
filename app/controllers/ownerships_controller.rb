@@ -11,8 +11,8 @@ class OwnershipsController < ApplicationController
     # itemsテーブルに存在しない場合はAmazonのデータを登録する。
     if @item.new_record?
       begin
-        # TODO 商品情報の取得 Amazon::Ecs.item_lookupを用いてください
-        response = {}
+        # TODO 商品情報の取得 Amazon::Ecs.item_lookupを用いてください。4日更新
+        response = Amazon::Ecs.item_lookup(params[:asin])
       rescue Amazon::RequestError => e
         return render :js => "alert('#{e.message}')"
       end
