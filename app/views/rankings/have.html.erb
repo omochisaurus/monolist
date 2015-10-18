@@ -1,0 +1,31 @@
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-contents">
+      <h1>haveランキング</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+    <% @rank_have.each_with_index do |item,index| %>
+      <div class="item-box">
+        <div class="image">
+          <div class="img-wrap">
+            <% if item.large_image.present? %>
+              <%= image_tag(item.large_image , alt: item.title) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.title) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="detail">
+          <p class="title">
+            <b><%= index+=1 %>位</b>
+            <%= item.title %>
+          </p>
+        </div>
+        <%= render 'items/action' , item: item if logged_in? %>
+      </div>
+    <% end %>
+  </div>
+</div>
